@@ -10,9 +10,9 @@ export function Header() {
           <span>Equilíbrio Digital</span>
         </Link>
         <nav className="hidden md:flex gap-6 text-foreground/80">
-          <Link href="#expertise" className="hover:text-primary transition-colors">Expertise</Link>
-          <Link href="#skills" className="hover:text-primary transition-colors">Skills</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors">Contact</Link>
+          <Link href="#expertise" className="hover:text-primary transition-colors">Experiência</Link>
+          <Link href="#skills" className="hover:text-primary transition-colors">Habilidades</Link>
+          <Link href="#contact" className="hover:text-primary transition-colors">Contato</Link>
         </nav>
       </div>
     </header>

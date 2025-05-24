@@ -20,7 +20,7 @@ export async function submitContactForm(
       fields[key] = formData[key].toString();
     }
     return {
-      message: "Invalid form data. Please check the fields and try again.",
+      message: "Dados do formulário inválidos. Por favor, verifique os campos e tente novamente.",
       fields,
       issues: parsed.error.issues.map((issue) => issue.message),
       success: false,
@@ -30,10 +30,10 @@ export async function submitContactForm(
   const { name, email, message } = parsed.data;
 
   // Simulate sending email or saving to database
-  console.log("Contact Form Submitted:");
-  console.log("Name:", name);
+  console.log("Formulário de Contato Enviado:");
+  console.log("Nome:", name);
   console.log("Email:", email);
-  console.log("Message:", message);
+  console.log("Mensagem:", message);
 
   // Example with Resend (uncomment and configure if using Resend)
   /*
@@ -41,24 +41,24 @@ export async function submitContactForm(
     await resend.emails.send({
       from: 'onboarding@resend.dev', // Your verified Resend sending email
       to: 'your-email@example.com', // Your receiving email
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `Nova Submissão do Formulário de Contato de ${name}`,
       html: `
-        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Nome:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
+        <p><strong>Mensagem:</strong></p>
         <p>${message}</p>
       `,
     });
-    return { message: "Thank you! Your message has been sent successfully.", success: true };
+    return { message: "Obrigado! Sua mensagem foi enviada com sucesso.", success: true };
   } catch (error) {
-    console.error("Email sending error:", error);
+    console.error("Erro ao enviar email:", error);
     return {
-      message: "An error occurred while sending your message. Please try again later.",
+      message: "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.",
       success: false,
     };
   }
   */
   
   // Placeholder success response
-  return { message: "Thank you! Your message has been received (simulated).", success: true };
+  return { message: "Obrigado! Sua mensagem foi recebida (simulado).", success: true };
 }

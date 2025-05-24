@@ -6,40 +6,40 @@ import type { Experience } from '@/types';
 const experiences: Experience[] = [
   {
     id: '1',
-    role: 'Lead Data Strategist',
+    role: 'Estrategista Líder de Dados',
     company: 'Innovatech Dynamics',
-    period: '2021 - Present',
+    period: '2021 - Presente',
     description: [
-      'Architected and implemented scalable data infrastructure on cloud platforms (AWS, Azure).',
-      'Developed and deployed machine learning models for predictive analytics, improving forecast accuracy by 25%.',
-      'Led cross-functional teams to deliver data-driven solutions for key business challenges.',
-      'Championed data governance and quality initiatives across the organization.',
+      'Arquitetou e implementou infraestrutura de dados escalável em plataformas de nuvem (AWS, Azure).',
+      'Desenvolveu e implantou modelos de machine learning para análise preditiva, melhorando a precisão das previsões em 25%.',
+      'Liderou equipes multifuncionais para entregar soluções orientadas a dados para desafios de negócios chave.',
+      'Defendeu iniciativas de governança e qualidade de dados em toda a organização.',
     ],
     logoUrl: 'https://placehold.co/100x100.png',
     logoAiHint: 'tech company logo',
   },
   {
     id: '2',
-    role: 'Senior Data Analyst',
+    role: 'Analista de Dados Sênior',
     company: 'Future Systems Co.',
     period: '2018 - 2021',
     description: [
-      'Performed complex data analysis to identify trends, insights, and opportunities for growth.',
-      'Created interactive dashboards and reports to communicate findings to stakeholders.',
-      'Collaborated with product teams to define data requirements for new features.',
+      'Realizou análises de dados complexas para identificar tendências, insights e oportunidades de crescimento.',
+      'Criou dashboards e relatórios interativos para comunicar descobertas aos stakeholders.',
+      'Colaborou com equipes de produto para definir requisitos de dados para novas funcionalidades.',
     ],
     logoUrl: 'https://placehold.co/100x100.png',
     logoAiHint: 'corporate logo',
   },
   {
     id: '3',
-    role: 'Data Engineer',
+    role: 'Engenheiro de Dados',
     company: 'DataWeavers Inc.',
     period: '2016 - 2018',
     description: [
-      'Designed, built, and maintained ETL pipelines for data ingestion and transformation.',
-      'Optimized database performance and ensured data integrity.',
-      'Worked with large datasets using big data technologies like Spark and Hadoop.',
+      'Projetou, construiu e manteve pipelines de ETL para ingestão e transformação de dados.',
+      'Otimizou o desempenho do banco de dados e garantiu a integridade dos dados.',
+      'Trabalhou com grandes conjuntos de dados usando tecnologias de big data como Spark e Hadoop.',
     ],
     logoUrl: 'https://placehold.co/100x100.png',
     logoAiHint: 'abstract logo',
@@ -50,7 +50,7 @@ export function ExpertiseSection() {
   return (
     <section id="expertise" className="py-12 md:py-16">
       <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
-        Professional Journey
+        Jornada Profissional
       </h2>
       <div className="space-y-8">
         {experiences.map((exp) => (
@@ -60,7 +60,7 @@ export function ExpertiseSection() {
                 <div className="md:w-1/4 p-6 flex items-center justify-center bg-secondary/30">
                    <Image
                     src={exp.logoUrl}
-                    alt={`${exp.company} logo`}
+                    alt={`Logo da ${exp.company}`}
                     width={80}
                     height={80}
                     className="rounded-md object-contain"

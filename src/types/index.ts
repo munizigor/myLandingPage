@@ -10,10 +10,16 @@ export interface Experience {
   logoAiHint?: string;
 }
 
+export type SkillCategory = 
+  | 'Ciência de Dados & Analytics' 
+  | 'Desenvolvimento & Engenharia' 
+  | 'Ferramentas & Plataformas' 
+  | 'Certificações & Aprendizado';
+
 export interface Skill {
   id: string;
   name: string;
   Icon?: LucideIcon | React.ElementType;
-  category: 'Data Science & Analytics' | 'Development & Engineering' | 'Tools & Platforms' | 'Certifications & Learning';
+  category: SkillCategory;
   level?: number; // Optional: 1-5 or 1-100 for proficiency bar
 }

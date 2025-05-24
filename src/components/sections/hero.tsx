@@ -8,7 +8,7 @@ export function HeroSection() {
       <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-8 rounded-full overflow-hidden shadow-xl border-4 border-accent/50">
         <Image 
           src="https://placehold.co/300x300.png" 
-          alt="IT Expert Portrait" 
+          alt="Retrato de Especialista em TI" 
           layout="fill"
           objectFit="cover"
           data-ai-hint="professional portrait"
@@ -16,17 +16,17 @@ export function HeroSection() {
         />
       </div>
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-primary mb-6">
-        Harmonizing <span className="text-accent">Data</span>, Engineering <span className="text-accent">Balance</span>.
+        Harmonizando <span className="text-accent">Dados</span>, Gerando <span className="text-accent">Equilíbrio</span>.
       </h1>
       <p className="max-w-2xl mx-auto text-lg md:text-xl text-foreground/80 mb-10">
-        Expert IT solutions for a digitally balanced world. Specializing in data science, analytics, and strategic insights to foster growth and clarity.
+        Soluções especializadas em TI para um mundo digitalmente equilibrado. Especializado em ciência de dados, analytics e insights estratégicos para promover crescimento e clareza.
       </p>
       <div className="space-x-4">
         <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-          <Link href="#contact">Connect With Me</Link>
+          <Link href="#contact">Entre em Contato</Link>
         </Button>
         <Button asChild variant="outline" size="lg" className="border-accent text-accent hover:bg-accent/10">
-          <Link href="#expertise">View Expertise</Link>
+          <Link href="#expertise">Ver Experiência</Link>
         </Button>
       </div>
     </section>

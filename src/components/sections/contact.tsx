@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
-import { useActionState } from 'react'; // Changed from 'react-dom' and 'useFormState'
+import { useActionState } from 'react'; 
 import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,11 +27,11 @@ function SubmitButton() {
       {pending ? (
         <div className="flex items-center gap-2">
           <svg className="animate-spin h-5 w-5 mr-3 border-t-2 border-r-2 border-primary-foreground rounded-full" viewBox="0 0 24 24"></svg>
-          Sending...
+          Enviando...
         </div>
       ) : (
         <div className="flex items-center gap-2">
-          <Send className="h-5 w-5" /> Send Message
+          <Send className="h-5 w-5" /> Enviar Mensagem
         </div>
       )}
     </Button>
@@ -39,7 +39,7 @@ function SubmitButton() {
 }
 
 export function ContactSection() {
-  const [state, formAction] = useActionState(submitContactForm, initialState); // Changed to useActionState
+  const [state, formAction] = useActionState(submitContactForm, initialState); 
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -55,22 +55,22 @@ export function ContactSection() {
   useEffect(() => {
     if (state.message) {
       toast({
-        title: state.success ? "Success!" : "Error",
+        title: state.success ? "Sucesso!" : "Erro",
         description: state.message,
         variant: state.success ? "default" : "destructive",
       });
       if (state.success) {
-        reset(); // Reset react-hook-form fields
-        formRef.current?.reset(); // Reset native form fields
+        reset(); 
+        formRef.current?.reset(); 
       }
     }
   }, [state, toast, reset]);
 
 
   // Combine server-side issues with client-side errors
-  const nameError = errors.name?.message || (state.issues && state.fields?.name === errors.name?.ref?.value ? state.issues.find(issue => issue.toLowerCase().includes('name')) : undefined);
+  const nameError = errors.name?.message || (state.issues && state.fields?.name === errors.name?.ref?.value ? state.issues.find(issue => issue.toLowerCase().includes('nome')) : undefined);
   const emailError = errors.email?.message || (state.issues && state.fields?.email === errors.email?.ref?.value ? state.issues.find(issue => issue.toLowerCase().includes('email')) : undefined);
-  const messageError = errors.message?.message || (state.issues && state.fields?.message === errors.message?.ref?.value ? state.issues.find(issue => issue.toLowerCase().includes('message')) : undefined);
+  const messageError = errors.message?.message || (state.issues && state.fields?.message === errors.message?.ref?.value ? state.issues.find(issue => issue.toLowerCase().includes('mensagem')) : undefined);
 
 
   return (
@@ -78,16 +78,16 @@ export function ContactSection() {
       <Card className="max-w-2xl mx-auto shadow-xl bg-card">
         <CardHeader className="text-center">
           <Mail className="h-12 w-12 text-accent mx-auto mb-4" />
-          <CardTitle className="text-3xl md:text-4xl font-bold text-primary">Get in Touch</CardTitle>
+          <CardTitle className="text-3xl md:text-4xl font-bold text-primary">Entre em Contato</CardTitle>
           <CardDescription className="text-lg text-muted-foreground">
-            Have a project in mind or want to discuss a collaboration? Fill out the form below.
+            Tem um projeto em mente ou quer discutir uma colaboração? Preencha o formulário abaixo.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form ref={formRef} action={formAction} className="space-y-6">
             <div>
               <Label htmlFor="name" className="flex items-center gap-2 mb-1 text-foreground/90">
-                <User className="h-4 w-4 text-primary" /> Your Name
+                <User className="h-4 w-4 text-primary" /> Seu Nome
               </Label>
               <Input
                 id="name"
@@ -101,7 +101,7 @@ export function ContactSection() {
 
             <div>
               <Label htmlFor="email" className="flex items-center gap-2 mb-1 text-foreground/90">
-                <Mail className="h-4 w-4 text-primary" /> Your Email
+                <Mail className="h-4 w-4 text-primary" /> Seu Email
               </Label>
               <Input
                 id="email"
@@ -115,7 +115,7 @@ export function ContactSection() {
 
             <div>
               <Label htmlFor="message" className="flex items-center gap-2 mb-1 text-foreground/90">
-                <MessageSquare className="h-4 w-4 text-primary" /> Your Message
+                <MessageSquare className="h-4 w-4 text-primary" /> Sua Mensagem
               </Label>
               <Textarea
                 id="message"

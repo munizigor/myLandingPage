@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Equilíbrio Digital - IT Expertise',
-  description: 'Showcasing professional IT expertise in data science, analytics, and strategic solutions for a digitally balanced world.',
+  title: 'Equilíbrio Digital - Expertise em TI',
+  description: 'Apresentando expertise profissional em TI em ciência de dados, analytics e soluções estratégicas para um mundo digitalmente equilibrado.',
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased"> {/* font-family is set in globals.css */}
         {children}
         <Toaster />
