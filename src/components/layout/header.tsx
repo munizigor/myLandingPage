@@ -9,16 +9,16 @@ export function Header() {
   return (
     <header className="py-4 md:py-6 shadow-sm bg-background/80 backdrop-blur-md sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-semibold text-primary hover:text-primary/90 transition-colors">
+        <Link href="/" className="flex items-center gap-2 text-2xl font-semibold text-primary hover:text-primary/90 transition-colors duration-300">
           <MountainSnow className="h-7 w-7 text-accent" />
           <span>Equilíbrio Digital</span>
         </Link>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-foreground/80">
-          <Link href="#expertise" className="hover:text-primary transition-colors">Experiência</Link>
-          <Link href="#skills" className="hover:text-primary transition-colors">Habilidades</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors">Contato</Link>
+          <Link href="#expertise" className="hover:text-primary transition-colors duration-300">Experiência</Link>
+          <Link href="#skills" className="hover:text-primary transition-colors duration-300">Habilidades</Link>
+          <Link href="#contact" className="hover:text-primary transition-colors duration-300">Contato</Link>
           <ThemeToggleButton />
         </nav>
 
@@ -35,13 +35,13 @@ export function Header() {
             <SheetContent side="right" className="w-[280px] sm:w-[320px]">
               <nav className="flex flex-col gap-4 mt-12 p-4">
                 <SheetClose asChild>
-                  <Link href="#expertise" className="text-lg block py-2 hover:text-primary transition-colors">Experiência</Link>
+                  <Link href="#expertise" className="text-lg block py-2 hover:text-primary transition-colors duration-300">Experiência</Link>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Link href="#skills" className="text-lg block py-2 hover:text-primary transition-colors">Habilidades</Link>
+                  <Link href="#skills" className="text-lg block py-2 hover:text-primary transition-colors duration-300">Habilidades</Link>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Link href="#contact" className="text-lg block py-2 hover:text-primary transition-colors">Contato</Link>
+                  <Link href="#contact" className="text-lg block py-2 hover:text-primary transition-colors duration-300">Contato</Link>
                 </SheetClose>
               </nav>
             </SheetContent>
