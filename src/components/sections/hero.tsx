@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="py-16 md:py-24 text-center">
+    <section id="hero" className="py-16 md:py-24 text-center scroll-mt-24">
       <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-8 rounded-full overflow-hidden shadow-xl border-4 border-accent/50">
         <Image 
           src="https://placehold.co/300x300.png" 

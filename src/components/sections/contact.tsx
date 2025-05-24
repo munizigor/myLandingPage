@@ -74,7 +74,7 @@ export function ContactSection() {
 
 
   return (
-    <section id="contact" className="py-12 md:py-16">
+    <section id="contact" className="py-12 md:py-16 scroll-mt-24">
       <Card className="max-w-2xl mx-auto shadow-xl bg-card">
         <CardHeader className="text-center">
           <Mail className="h-12 w-12 text-accent mx-auto mb-4" />
