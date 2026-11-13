@@ -9,7 +9,17 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+  			serif: ['var(--font-serif)', 'Georgia', 'Times New Roman', 'serif'],
+  			mono: ['var(--font-mono)', 'ui-monospace', 'Menlo', 'Consolas', 'monospace']
+  		},
+  		maxWidth: {
+  			content: 'var(--content-width)',
+  			measure: 'var(--measure)'
+  		},
   		colors: {
+  			success: 'hsl(var(--success))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -22,6 +32,7 @@ export default {
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
+  				hover: 'hsl(var(--primary-hover))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
@@ -34,6 +45,7 @@ export default {
   			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
+  				soft: 'hsl(var(--accent-soft))',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
   			destructive: {
@@ -63,8 +75,8 @@ export default {
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			md: 'calc(var(--radius) - 4px)',
+  			sm: 'calc(var(--radius) - 6px)'
   		},
   		keyframes: {
   			'accordion-down': {

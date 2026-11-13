@@ -2,100 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Equilíbrio Digital: tokens do design system (direção executiva e sóbria).
+ * Fonte da verdade: https://claude.ai/artifact/CAzGXDufZmRbjmxvvs54BH
+ * Valores em HSL sem função, no formato que o shadcn/ui espera.
+ */
 @layer base {
   :root {
-    --background: 0 0% 98%; /* Almost White */
-    --foreground: 0 0% 20%; /* Dark Gray */
+    --background: 220 18% 97%; /* background */
+    --foreground: 221 39% 11%; /* foreground */
+    --card: 0 0% 100%; /* card */
+    --card-foreground: 221 39% 11%; /* foreground */
+    --popover: 0 0% 100%; /* card */
+    --popover-foreground: 221 39% 11%; /* foreground */
+    --primary: 219 52% 22%; /* primary */
+    --primary-hover: 218 51% 29%; /* primary-hover */
+    --primary-foreground: 0 0% 100%; /* primary-foreground */
+    --secondary: 220 19% 94%; /* secondary */
+    --secondary-foreground: 221 39% 11%; /* foreground */
+    --muted: 220 19% 94%; /* secondary */
+    --muted-foreground: 216 13% 37%; /* muted-foreground */
+    --accent: 40 53% 31%; /* accent */
+    --accent-soft: 42 45% 91%; /* accent-soft */
+    --accent-foreground: 0 0% 100%; /* card */
+    --success: 154 57% 26%; /* success */
+    --destructive: 4 76% 40%; /* destructive */
+    --destructive-foreground: 0 0% 100%; /* card */
+    --border: 217 18% 86%; /* border */
+    --input: 218 11% 57%; /* input */
+    --ring: 217 56% 42%; /* ring */
+    --chart-1: 219 52% 22%; /* primary */
+    --chart-2: 40 53% 31%; /* accent */
+    --chart-3: 217 56% 42%; /* ring */
+    --chart-4: 216 13% 37%; /* muted-foreground */
+    --chart-5: 154 57% 26%; /* success */
+    --sidebar-background: 0 0% 100%; /* card */
+    --sidebar-foreground: 221 39% 11%; /* foreground */
+    --sidebar-primary: 219 52% 22%; /* primary */
+    --sidebar-primary-foreground: 0 0% 100%; /* primary-foreground */
+    --sidebar-accent: 220 19% 94%; /* secondary */
+    --sidebar-accent-foreground: 221 39% 11%; /* foreground */
+    --sidebar-border: 217 18% 86%; /* border */
+    --sidebar-ring: 217 56% 42%; /* ring */
 
-    --card: 0 0% 98%; /* Almost White */
-    --card-foreground: 0 0% 20%; /* Dark Gray */
-
-    --popover: 0 0% 98%; /* Almost White */
-    --popover-foreground: 0 0% 20%; /* Dark Gray */
-
-    --primary: 220 10% 45%; /* Muted Blue-Gray */
-    --primary-foreground: 0 0% 98%; /* Almost White (contrast for primary) */
-    
-    --secondary: 0 0% 92%; /* Light Gray */
-    --secondary-foreground: 0 0% 20%; /* Dark Gray */
-
-    --muted: 0 0% 85%; /* Medium Light Gray */
-    --muted-foreground: 0 0% 40%; /* Medium Dark Gray */
-
-    --accent: 210 10% 65%; /* Light Steel Blue */
-    --accent-foreground: 0 0% 15%; /* Darker Gray (contrast for accent) */
-
-    --destructive: 0 72% 51%; /* Standard destructive red */
-    --destructive-foreground: 0 0% 98%; /* Light color for destructive text */
-
-    --border: 0 0% 88%; /* Light Gray Border */
-    --input: 0 0% 88%; /* Light Gray Input Background/Border */
-    --ring: 220 10% 55%; /* Muted Blue-Gray for focus rings */
-
-    --radius: 0.5rem;
-
-    /* Chart colors - can be adjusted if charts are used, otherwise defaults are fine */
-    --chart-1: 220 15% 50%;
-    --chart-2: 210 20% 60%;
-    --chart-3: 200 25% 55%;
-    --chart-4: 220 10% 70%;
-    --chart-5: 210 15% 75%;
-
-    /* Sidebar specific colors - Inheriting from main theme for consistency */
-    --sidebar-background: 0 0% 96%; /* Slightly off-white for sidebar */
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 220 10% 45%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 210 10% 65%;
-    --sidebar-accent-foreground: 0 0% 15%;
-    --sidebar-border: 0 0% 85%;
-    --sidebar-ring: 220 10% 55%;
+    --radius: 0.625rem; /* radius-lg 10px; md 6px; sm 4px */
+    --content-width: 1120px;
+    --measure: 68ch;
   }
 
   .dark {
-    /* For dark mode, we'd define a contrasting palette. */
-    --background: 0 0% 15%; /* Dark Gray */
-    --foreground: 0 0% 95%; /* Very Light Gray */
-
-    --card: 0 0% 18%; /* Slightly Darker Gray */
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 18%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 220 15% 55%; /* Muted Blue-Gray (slightly lighter for dark mode) */
-    --primary-foreground: 0 0% 10%; /* Very Dark for contrast */
-    
-    --secondary: 0 0% 25%; /* Medium Dark Gray */
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 0 0% 22%; /* Darker Muted Gray */
-    --muted-foreground: 0 0% 70%; /* Lighter Muted Foreground */
-
-    --accent: 210 15% 60%; /* Light Steel Blue (slightly adjusted for dark) */
-    --accent-foreground: 0 0% 95%; 
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 28%; /* Darker Border */
-    --input: 0 0% 28%; /* Darker Input */
-    --ring: 220 15% 55%;
-
-    --chart-1: 220 20% 60%;
-    --chart-2: 210 25% 70%;
-    --chart-3: 200 30% 65%;
-    --chart-4: 220 15% 80%;
-    --chart-5: 210 20% 85%;
-
-    --sidebar-background: 0 0% 12%; /* Very Dark Gray for sidebar */
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 220 15% 55%;
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 210 15% 60%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 25%;
-    --sidebar-ring: 220 15% 55%;
+    --background: 219 40% 8%; /* background */
+    --foreground: 216 26% 93%; /* foreground */
+    --card: 218 35% 12%; /* card */
+    --card-foreground: 216 26% 93%; /* foreground */
+    --popover: 218 35% 12%; /* card */
+    --popover-foreground: 216 26% 93%; /* foreground */
+    --primary: 218 58% 78%; /* primary */
+    --primary-hover: 218 60% 84%; /* primary-hover */
+    --primary-foreground: 219 40% 8%; /* primary-foreground */
+    --secondary: 218 33% 16%; /* secondary */
+    --secondary-foreground: 216 26% 93%; /* foreground */
+    --muted: 218 33% 16%; /* secondary */
+    --muted-foreground: 216 16% 66%; /* muted-foreground */
+    --accent: 41 54% 63%; /* accent */
+    --accent-soft: 42 31% 13%; /* accent-soft */
+    --accent-foreground: 218 35% 12%; /* card */
+    --success: 149 51% 62%; /* success */
+    --destructive: 6 79% 72%; /* destructive */
+    --destructive-foreground: 218 35% 12%; /* card */
+    --border: 218 26% 22%; /* border */
+    --input: 219 15% 50%; /* input */
+    --ring: 218 60% 69%; /* ring */
+    --chart-1: 218 58% 78%; /* primary */
+    --chart-2: 41 54% 63%; /* accent */
+    --chart-3: 218 60% 69%; /* ring */
+    --chart-4: 216 16% 66%; /* muted-foreground */
+    --chart-5: 149 51% 62%; /* success */
+    --sidebar-background: 218 35% 12%; /* card */
+    --sidebar-foreground: 216 26% 93%; /* foreground */
+    --sidebar-primary: 218 58% 78%; /* primary */
+    --sidebar-primary-foreground: 219 40% 8%; /* primary-foreground */
+    --sidebar-accent: 218 33% 16%; /* secondary */
+    --sidebar-accent-foreground: 216 26% 93%; /* foreground */
+    --sidebar-border: 218 26% 22%; /* border */
+    --sidebar-ring: 218 60% 69%; /* ring */
   }
 }
 
@@ -103,19 +93,40 @@
   html {
     @apply scroll-smooth;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-geist-sans); /* Apply Geist Sans globally */
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 26px;
   }
-  /* Ensure headings also use the primary font */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-geist-sans);
+  h1, h2 {
+    @apply font-serif font-medium;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
-  /* Apply Geist Mono to code elements */
+  h3, h4, h5, h6 {
+    @apply font-sans font-semibold;
+  }
   code, pre, kbd, samp {
-    font-family: var(--font-geist-mono);
+    @apply font-mono;
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase text-accent;
+    letter-spacing: 0.12em;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
