@@ -1,48 +1,72 @@
+"use client";
 
-import Link from 'next/link';
-import { MountainSnow, Menu } from 'lucide-react';
-import { ThemeToggleButton } from '@/components/theme-toggle-button';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
+import { ThemeToggleButton } from "@/components/theme-toggle-button";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+
+const links = [
+  { href: "#experiencia", label: "Experiência" },
+  { href: "#habilidades", label: "Habilidades" },
+  { href: "#contato", label: "Contato" },
+];
 
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="py-4 md:py-6 shadow-sm bg-background/80 backdrop-blur-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-semibold text-primary hover:text-primary/90 transition-colors duration-300">
-          <MountainSnow className="h-7 w-7 text-accent" />
-          <span>Equilíbrio Digital</span>
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b border-border bg-card transition-shadow duration-150",
+        scrolled && "shadow-ds-md"
+      )}
+    >
+      <div className="mx-auto flex h-16 w-full max-w-content items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="font-serif text-xl font-semibold text-primary">
+          Equilíbrio Digital
         </Link>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 text-foreground/80">
-          <Link href="#expertise" className="hover:text-primary transition-colors duration-300">Experiência</Link>
-          <Link href="#skills" className="hover:text-primary transition-colors duration-300">Habilidades</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors duration-300">Contato</Link>
+
+        <nav aria-label="Seções" className="hidden items-center gap-6 md:flex">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="border-b border-transparent py-1 text-label text-muted-foreground transition-colors duration-150 hover:border-primary hover:text-foreground"
+            >
+              {l.label}
+            </Link>
+          ))}
           <ThemeToggleButton />
         </nav>
 
-        {/* Mobile Navigation & Theme Toggle */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="flex items-center gap-2 md:hidden">
           <ThemeToggleButton />
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Abrir menu">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Abrir menu</span>
+              <Button variant="ghost" size="icon" aria-label="Abrir menu">
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] sm:w-[320px]">
-              <nav className="flex flex-col gap-4 mt-12 p-4">
-                <SheetClose asChild>
-                  <Link href="#expertise" className="text-lg block py-2 hover:text-primary transition-colors duration-300">Experiência</Link>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Link href="#skills" className="text-lg block py-2 hover:text-primary transition-colors duration-300">Habilidades</Link>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Link href="#contact" className="text-lg block py-2 hover:text-primary transition-colors duration-300">Contato</Link>
-                </SheetClose>
+            <SheetContent side="right" className="w-[280px] bg-card">
+              <SheetTitle className="font-serif text-lg text-primary">Equilíbrio Digital</SheetTitle>
+              <nav aria-label="Seções" className="mt-8 flex flex-col">
+                {links.map((l) => (
+                  <SheetClose asChild key={l.href}>
+                    <Link href={l.href} className="border-b border-border py-3 text-body text-foreground">
+                      {l.label}
+                    </Link>
+                  </SheetClose>
+                ))}
               </nav>
             </SheetContent>
           </Sheet>

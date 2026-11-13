@@ -12,8 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Send, User, MessageSquare } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Clock, Loader2, Send } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Section, SectionHeader } from '@/components/ds/section';
 
 const initialState: ContactFormState = {
   message: '',
@@ -23,20 +24,54 @@ const initialState: ContactFormState = {
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
       {pending ? (
-        <div className="flex items-center gap-2">
-          <svg className="animate-spin h-5 w-5 mr-3 border-t-2 border-r-2 border-primary-foreground rounded-full" viewBox="0 0 24 24"></svg>
-          Enviando...
-        </div>
+        <>
+          <Loader2 className="motion-safe:animate-spin" aria-hidden="true" /> Enviando…
+        </>
       ) : (
-        <div className="flex items-center gap-2">
-          <Send className="h-5 w-5" /> Enviar Mensagem
-        </div>
+        <>
+          <Send aria-hidden="true" /> Enviar mensagem
+        </>
       )}
     </Button>
   );
 }
+
+function Field({
+  id,
+  label,
+  error,
+  help,
+  children,
+}: {
+  id: string;
+  label: string;
+  error?: string;
+  help?: string;
+  children: React.ReactNode;
+}) {
+  const note = error ?? help;
+  return (
+    <div className="grid gap-2">
+      <Label htmlFor={id} className="text-label text-foreground">
+        {label}
+      </Label>
+      {children}
+      {note && (
+        <p id={`${id}-nota`} className={cn("text-small", error ? "text-destructive" : "text-muted-foreground")}>
+          {note}
+        </p>
+      )}
+    </div>
+  );
+}
+
+const fieldClass = (hasError: boolean) =>
+  cn(
+    "min-h-11 border-input bg-card text-body placeholder:text-muted-foreground focus-visible:border-primary",
+    hasError && "border-destructive"
+  );
 
 export function ContactSection() {
   const [state, formAction] = useActionState(submitContactForm, initialState); 
@@ -55,7 +90,7 @@ export function ContactSection() {
   useEffect(() => {
     if (state.message) {
       toast({
-        title: state.success ? "Sucesso!" : "Erro",
+        title: state.success ? "Mensagem enviada" : "Não foi possível enviar",
         description: state.message,
         variant: state.success ? "default" : "destructive",
       });
@@ -74,67 +109,71 @@ export function ContactSection() {
 
 
   return (
-    <section id="contact" className="py-12 md:py-16 scroll-mt-24">
-      <Card className="max-w-2xl mx-auto shadow-xl bg-card">
-        <CardHeader className="text-center">
-          <Mail className="h-12 w-12 text-accent mx-auto mb-4" />
-          <CardTitle className="text-3xl md:text-4xl font-bold text-primary">Entre em Contato</CardTitle>
-          <CardDescription className="text-lg text-muted-foreground">
-            Tem um projeto em mente ou quer discutir uma colaboração? Preencha o formulário abaixo.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form ref={formRef} action={formAction} className="space-y-6">
-            <div>
-              <Label htmlFor="name" className="flex items-center gap-2 mb-1 text-foreground/90">
-                <User className="h-4 w-4 text-primary" /> Seu Nome
-              </Label>
-              <Input
-                id="name"
-                type="text"
-                {...register("name")}
-                className={nameError ? "border-destructive" : ""}
-                aria-invalid={!!nameError}
-              />
-              {nameError && <p className="text-sm text-destructive mt-1">{nameError}</p>}
+    <Section id="contato">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="min-w-0">
+          <SectionHeader
+            eyebrow="Contato"
+            title="Vamos conversar sobre o seu projeto"
+            lead="Conte o contexto, o problema de negócio e o prazo. Respondo com uma proposta de próximos passos."
+          />
+          <p className="mt-8 flex items-center gap-2 text-small text-muted-foreground">
+            <Clock className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+            Resposta em até dois dias úteis.
+          </p>
+        </div>
+
+        <div className="min-w-0 rounded-lg border border-border bg-card p-6 shadow-ds-sm md:p-8">
+          <form ref={formRef} action={formAction} className="grid gap-6" noValidate>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Field id="name" label="Nome" error={nameError}>
+                <Input
+                  id="name"
+                  type="text"
+                  autoComplete="name"
+                  {...register("name")}
+                  className={fieldClass(!!nameError)}
+                  aria-invalid={!!nameError}
+                  aria-describedby={nameError ? "name-nota" : undefined}
+                />
+              </Field>
+              <Field id="email" label="E-mail" error={emailError}>
+                <Input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="nome@empresa.com.br"
+                  {...register("email")}
+                  className={fieldClass(!!emailError)}
+                  aria-invalid={!!emailError}
+                  aria-describedby={emailError ? "email-nota" : undefined}
+                />
+              </Field>
             </div>
 
-            <div>
-              <Label htmlFor="email" className="flex items-center gap-2 mb-1 text-foreground/90">
-                <Mail className="h-4 w-4 text-primary" /> Seu Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                {...register("email")}
-                className={emailError ? "border-destructive" : ""}
-                aria-invalid={!!emailError}
-              />
-              {emailError && <p className="text-sm text-destructive mt-1">{emailError}</p>}
-            </div>
-
-            <div>
-              <Label htmlFor="message" className="flex items-center gap-2 mb-1 text-foreground/90">
-                <MessageSquare className="h-4 w-4 text-primary" /> Sua Mensagem
-              </Label>
+            <Field id="message" label="Mensagem" error={messageError}>
               <Textarea
                 id="message"
-                rows={5}
+                rows={6}
+                placeholder="Conte o contexto do projeto e o prazo."
                 {...register("message")}
-                className={messageError ? "border-destructive" : ""}
+                className={cn(fieldClass(!!messageError), "min-h-[140px] resize-y")}
                 aria-invalid={!!messageError}
+                aria-describedby={messageError ? "message-nota" : undefined}
               />
-              {messageError && <p className="text-sm text-destructive mt-1">{messageError}</p>}
+            </Field>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-small text-muted-foreground">Seus dados são usados apenas para responder.</p>
+              <SubmitButton />
             </div>
-            
-            <SubmitButton />
 
             {state.message && !state.success && state.issues === undefined && (
-               <p className="text-sm text-destructive mt-2 text-center">{state.message}</p>
+              <p className="text-small text-destructive">{state.message}</p>
             )}
           </form>
-        </CardContent>
-      </Card>
-    </section>
+        </div>
+      </div>
+    </Section>
   );
 }

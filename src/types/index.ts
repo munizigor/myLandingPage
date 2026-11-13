@@ -1,25 +1,23 @@
-import type { LucideIcon } from 'lucide-react';
-
 export interface Experience {
   id: string;
   role: string;
   company: string;
   period: string;
   description: string[];
-  logoUrl?: string; // URL for company logo placeholder
-  logoAiHint?: string;
+  tools?: string[];
 }
 
+export type SkillLevel = 1 | 2 | 3 | 4 | 5;
+
 export type SkillCategory = 
-  | 'Ciência de Dados & Analytics' 
-  | 'Desenvolvimento & Engenharia' 
-  | 'Ferramentas & Plataformas' 
-  | 'Certificações & Aprendizado';
+  | 'Ciência de dados e analytics'
+  | 'Desenvolvimento e engenharia'
+  | 'Ferramentas e plataformas'
+  | 'Certificações';
 
 export interface Skill {
   id: string;
   name: string;
-  Icon?: LucideIcon | React.ElementType;
   category: SkillCategory;
-  level?: number; // Optional: 1-5 or 1-100 for proficiency bar
+  level?: SkillLevel; // 1 Básico, 2 Intermediário, 3 Avançado, 4 Especialista, 5 Referência
 }
